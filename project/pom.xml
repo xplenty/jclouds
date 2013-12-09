@@ -112,7 +112,7 @@
   <distributionManagement>
     <site>
       <id>jclouds-github-pages-site</id>
-      <url>${maven.site.url.base}/${project.version}</url>
+      <url>${maven.site.url.base}/${project.version}/</url>
     </site>
   </distributionManagement>
 
@@ -988,7 +988,7 @@
       <distributionManagement>
         <site>
           <id>jclouds-github-pages-site</id>
-          <url>${maven.site.url.base}/${project.version}/${project.artifactId}</url>
+          <url>${maven.site.url.base}/${project.version}/${project.artifactId}/</url>
         </site>
       </distributionManagement>
       <build>
