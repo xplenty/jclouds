@@ -47,6 +47,7 @@ import org.jclouds.location.suppliers.implicit.FirstZone;
 import org.jclouds.openstack.keystone.v2_0.domain.Access;
 import org.jclouds.openstack.keystone.v2_0.domain.Endpoint;
 import org.jclouds.openstack.keystone.v2_0.functions.AuthenticateApiAccessKeyCredentials;
+import org.jclouds.openstack.keystone.v2_0.functions.AuthenticateApiKeyCredentials;
 import org.jclouds.openstack.keystone.v2_0.functions.AuthenticatePasswordCredentials;
 import org.jclouds.openstack.keystone.v2_0.handlers.RetryOnRenew;
 import org.jclouds.openstack.keystone.v2_0.suppliers.LocationIdToURIFromAccessForTypeAndVersion;
@@ -201,6 +202,7 @@ public class KeystoneAuthenticationModule extends AbstractModule {
       Builder<Function<Credentials, Access>> fns = ImmutableSet.<Function<Credentials, Access>> builder();
       fns.add(i.getInstance(AuthenticatePasswordCredentials.class));
       fns.add(i.getInstance(AuthenticateApiAccessKeyCredentials.class));
+      fns.add(i.getInstance(AuthenticateApiKeyCredentials.class));
       return CredentialTypes.indexByCredentialType(fns.build());
    }
 

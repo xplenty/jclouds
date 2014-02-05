@@ -30,25 +30,29 @@ import com.google.common.collect.Maps;
  */
 public class CredentialTypes {
 
-   public static final String API_ACCESS_KEY_CREDENTIALS = "apiAccessKeyCredentials";
+	public static final String API_ACCESS_KEY_CREDENTIALS = "apiAccessKeyCredentials";
 
-   public static final String PASSWORD_CREDENTIALS = "passwordCredentials";
+	public static final String API_KEY_CREDENTIALS = "RAX-KSKEY:apiKeyCredentials";
 
-   public static <T> String credentialTypeOf(T input) {
-      Class<?> authenticationType = input.getClass();
-      checkArgument(authenticationType.isAnnotationPresent(CredentialType.class),
-               "programming error: %s should have annotation %s", authenticationType, CredentialType.class.getName());
-      return authenticationType.getAnnotation(CredentialType.class).value();
-   }
+	public static final String PASSWORD_CREDENTIALS = "passwordCredentials";
 
-   public static <T> Map<String, T> indexByCredentialType(Iterable<T> iterable) {
-      return Maps.uniqueIndex(iterable, new Function<T, String>() {
+	public static <T> String credentialTypeOf(T input) {
+		Class<?> authenticationType = input.getClass();
+		checkArgument(
+				authenticationType.isAnnotationPresent(CredentialType.class),
+				"programming error: %s should have annotation %s",
+				authenticationType, CredentialType.class.getName());
+		return authenticationType.getAnnotation(CredentialType.class).value();
+	}
 
-         @Override
-         public String apply(T input) {
-            return credentialTypeOf(input);
-         }
+	public static <T> Map<String, T> indexByCredentialType(Iterable<T> iterable) {
+		return Maps.uniqueIndex(iterable, new Function<T, String>() {
 
-      });
-   }
+			@Override
+			public String apply(T input) {
+				return credentialTypeOf(input);
+			}
+
+		});
+	}
 }
